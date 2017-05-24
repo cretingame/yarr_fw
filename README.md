@@ -1,6 +1,6 @@
 # yarr_fw
 This is the first version of the firmware.
-## How to genrate the bitfile
+## How to generate the bitfile
 1. Clean the project
 `python clean.py`
 2. Generate the Makefile

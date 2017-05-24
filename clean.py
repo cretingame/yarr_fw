@@ -19,10 +19,12 @@ for dirs,paths,files in ip_list:
 			
 
 for file in file_list:
-	if (file.endswith(".xpr")):
+	if (file.endswith((".xpr",".tcl",".log",".jou")) ) or (file.split('_',1)[0] == 'vivado'):
 		file_path= os.path.join(project_path + "/", file)
 		subprocess.call(["rm", file_path])
 		#print "deleted: " + file_path
-
-
+	if file.endswith((".cache",".hw",".ip_user_files",".runs")):
+		file_path= os.path.join(project_path + "/", file)
+		subprocess.call(["rm", "-r",file_path])
+		#print "deleted: " + file_path
 

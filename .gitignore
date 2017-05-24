@@ -1,0 +1,5 @@
+Makefile
+*.bit
+*.log
+*.jou
+*.xpr

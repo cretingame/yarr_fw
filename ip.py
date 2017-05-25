@@ -3,7 +3,6 @@ import subprocess
 
 project_path = os.getcwd()
 ip_folder = "ip-cores"
-ip_list = os.walk(ip_folder)
 board_folder = "syn/xpressk7"
 file_list = os.listdir(project_path)
 board_file_list = os.listdir(project_path + "/" + board_folder)
@@ -13,10 +12,10 @@ script_filename = "ip.tcl"
 script_file = open(script_filename, 'w+')
 
 
-for dirs,paths,files in ip_list:
+for roots,dirs,files in os.walk(ip_folder):
 	for ip_file in files:
 		if(ip_file.endswith(".xci") == False and ip_file.endswith(".prj") == False):
-			file_path = os.path.join(project_path + "/" + dirs, ip_file)
+			file_path = os.path.join(project_path + "/" + roots, ip_file)
 			subprocess.call(["rm", file_path])
 			
 
@@ -38,20 +37,32 @@ for file in board_file_list:
 # DDR3 desactivated
 script_file.write( "set_property is_enabled false [get_files  *xpressk7-ddr3.xdc] \n")
 
-ip_list = os.walk(ip_folder)
 
-for dirs,paths,files in ip_list:
+ips = []
+cmds = [
+"add_files {2}\n" + 
+"generate_target all [get_files {2}]\n" +
+"create_ip_run [get_files -of_objects [get_fileset sources_1] {2}]\n" +
+"update_compile_order -fileset sources_1\n" +
+"launch_run -jobs 4 {0}_synth_1\n",
+
+"wait_on_run {0}_synth_1\n" +
+"export_ip_user_files -of_objects [get_files {0}] -no_script -force\n"
+]
+
+for roots,dirs,files in os.walk(ip_folder):
 	for ip_file in files:
 		if(ip_file.endswith(".xci")):
-			file_path = os.path.join(project_path + "/" + dirs, ip_file)
-			cmd1 = "add_files " + file_path + "\n"
-			cmd2 = "generate_target all [get_files " + file_path +  "]\n"
-			cmd3 = "create_ip_run [get_files -of_objects [get_fileset sources_1] " + file_path + "]\n"
-			cmd4 = "update_compile_order -fileset sources_1\n"
-			cmd5 = "launch_run -jobs 4 " + os.path.splitext(ip_file)[0] + "_synth_1\n"
-			cmd6 = "wait_on_run " + os.path.splitext(ip_file)[0] + "_synth_1\n"
-			cmd7 = "export_ip_user_files -of_objects [get_files " + file_path+ "] -no_script -force\n"
-			script_file.write(cmd1 + cmd2 + cmd3 + cmd4 + cmd5 + cmd6 + cmd7+ "\n")
+			ip_name = os.path.splitext(ip_file)[0]
+			file_path = os.path.join(project_path + "/" + roots, ip_file)
+			ips.append((ip_name,ip_file,file_path))
+
+for cmd in cmds:
+	for ip in ips:
+		script_file.write(cmd.format(ip[0],ip[1],ip[2]))	
+		script_file.write("\n")	
+	script_file.write("\n")	
+
 
 script_file.close()
-os.system("vivado -mode batch -source " + script_filename)
+subprocess.call(["vivado", "-mode", "batch","-source", script_filename])

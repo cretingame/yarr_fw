@@ -1,37 +1,13 @@
 # To list file
 # ls -1 | xargs -I % echo \"%\",
+
+#modules = {"local" : ["../../../rtl/"],}
+modules = {"local" : ["rtl"],}
+
 files = [
-# Common
-"rtl/common/bcf_bram32.vhd",
-"rtl/common/common_pkg.vhd",
-"rtl/common/gn4124_core_pkg.vhd",
-"rtl/common/k_bram.vhd",
-"rtl/common/simple_counter.vhd",
 #TOP
 "syn/xpressk7/top_level.vhd",
-"rtl/app_package.vhd",
-"rtl/app.vhd",
 "syn/xpressk7/xpressk7.xdc",
-# Wishbone express
-"rtl/wshexp-core/bcf_bram_wbs.vhd",
-"rtl/wshexp-core/debugregisters.vhd",
-"rtl/wshexp-core/dma_controller.vhd",
-"rtl/wshexp-core/dma_controller_wb_slave.vhd",
-"rtl/wshexp-core/fifo_32x512.vhd",
-"rtl/wshexp-core/generic_async_fifo_wrapper.vhd",
-"rtl/wshexp-core/l2p_arbiter.vhd",
-"rtl/wshexp-core/l2p_dma_bench.vhd",
-"rtl/wshexp-core/l2p_dma_master.vhd",
-"rtl/wshexp-core/l2p_fifo.vhd",
-"rtl/wshexp-core/p2l_decoder_bench.vhd",
-"rtl/wshexp-core/p2l_decoder.vhd",
-"rtl/wshexp-core/p2l_dma_bench.vhd",
-"rtl/wshexp-core/p2l_dma_master.vhd",
-"rtl/wshexp-core/top_bench.vhd",
-"rtl/wshexp-core/wbmaster32.vhd",
-# DDR3 CTRL
-"rtl/ddr3-core/ddr3_ctrl_pkg.vhd",
-"rtl/ddr3-core/ddr3_ctrl_wb.vhd",
 "syn/xpressk7/xpressk7-ddr3.xdc",
 # IP cores
 "ip-cores/fifo_256x16/fifo_256x16.xci",

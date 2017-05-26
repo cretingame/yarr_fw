@@ -8,4 +8,10 @@ Makefile
 *.hw
 *.ip_user_files
 *.runs
+.ip.py.swp
+bitstream
+par
+project
+synthesize
+vivado*
 

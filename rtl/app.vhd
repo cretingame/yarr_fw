@@ -117,7 +117,7 @@ end app;
 architecture Behavioral of app is
     
     constant DEBUG_C : std_logic_vector(5 downto 0) := "000000";
-    constant DMA_MEMORY_SELECTED : string := "BRAM"; -- DDR3, BRAM, DEMUX
+    constant DMA_MEMORY_SELECTED : string := "DDR3"; -- DDR3, BRAM, DEMUX
     
 
     

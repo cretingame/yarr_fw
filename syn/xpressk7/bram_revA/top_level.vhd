@@ -395,7 +395,7 @@ begin
       app_0:app
       generic map(
         AXI_BUS_WIDTH => 64,
-	DMA_MEMORY_SELECTED => "DDR3"
+	DMA_MEMORY_SELECTED => "BRAM"
       )
       port map(
         clk_i => aclk,

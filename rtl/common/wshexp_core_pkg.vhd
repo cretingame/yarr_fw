@@ -42,7 +42,7 @@ use IEEE.NUMERIC_STD.all;
 --==============================================================================
 --! Package declaration
 --==============================================================================
-package gn4124_core_pkg is
+package wshexp_core_pkg is
 
 
 --==============================================================================
@@ -76,9 +76,9 @@ package gn4124_core_pkg is
 
 
 
-end gn4124_core_pkg;
+end wshexp_core_pkg;
 
-package body gn4124_core_pkg is
+package body wshexp_core_pkg is
 
     -----------------------------------------------------------------------------
   -- Byte swap function
@@ -173,4 +173,4 @@ package body gn4124_core_pkg is
     end if;
   end;
 
-end gn4124_core_pkg;
+end wshexp_core_pkg;

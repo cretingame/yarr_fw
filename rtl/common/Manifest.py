@@ -5,7 +5,7 @@
 files = [
 "bcf_bram32.vhd",
 "common_pkg.vhd",
-"gn4124_core_pkg.vhd",
+"wshexp_core_pkg.vhd",
 "k_bram.vhd",
 "simple_counter.vhd",
 ]

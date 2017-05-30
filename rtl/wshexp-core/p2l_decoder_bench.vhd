@@ -3,7 +3,7 @@ USE IEEE.STD_LOGIC_1164.all;
 USE IEEE.NUMERIC_STD.all;
 use IEEE.std_logic_unsigned.all; 
 
-use work.gn4124_core_pkg.all;
+use work.wshexp_core_pkg.all;
 
 entity p2l_decoder_bench is
     generic (
